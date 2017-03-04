@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return "hello World!";
-});
 
-Route::get('/calculate/{firstNumber}/{secondNumber}/{thirdNumber?}', ['uses'  => 'CalculateController@add' ]);
+Route::group(['prefix' => 'api', 'middleware' => ['api']], function () {
+	
+	/* app init routes */
+    Route::get('/v1/maindetails/{date?}/{suNumber?}/{birthday?}/{nhsNumber?}/{ingestionTime?}', ['uses' => 'v1\AppController@maindetails']);
+
+});
