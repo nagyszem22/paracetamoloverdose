@@ -12,23 +12,28 @@ class AppController extends Controller
 {
    	public function maindetails(Request $request) 
    	{
-   		// @todo: validate
-        // documentation: https://laravel.com/docs/5.2/validation#other-validation-approaches
-        // documentation: https://laravel.com/docs/5.2/validation#available-validation-rules
+   		  /* 
+        / Validation
+        /--------------------------------- 
+        / documentation: https://laravel.com/docs/5.2/validation#other-validation-approaches
+        / documentation: https://laravel.com/docs/5.2/validation#available-validation-rules
+        */
 
-      // dd($request->input());
-
-        /*$validator = Validator::make(['title' => 'sad'], [
-            'title' => 'required|max:4',
+        $validator = Validator::make($request->all(), [
+            "currentDateTime" => "required",
+            "name" => "required|max:80",
+            "birthday" => "required",
+            "nhsNumber" => "required|numeric|digits:8",
+            "ingestionDateTime" => "required"
         ]);
 
         if ($validator->fails()) {
-            return 'hello world';
-        }*/
+          return response()->json($validator->errors()->all());
+        }
 
-        return response()->json(['name' => 'Abigail', 'state' => 'CA']);
+        return response()->json($request->input());
 
-   		// @todo: connect to openEhr and upload the patient data
-  		// @todo: send back a response
+   		  // @todo: connect to openEhr and upload the patient data
+  		  // @todo: send back a response
    	}
 }

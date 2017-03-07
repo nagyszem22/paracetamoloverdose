@@ -15,6 +15,6 @@
 Route::group(['prefix' => 'api', 'middleware' => ['api']], function () {
 	
 	/* app init routes */
-    Route::get('/v1/maindetails/{date?}/{suNumber?}/{birthday?}/{nhsNumber?}/{ingestionTime?}', ['uses' => 'v1\AppController@maindetails']);
+    Route::post('/v1/maindetails', ['uses' => 'v1\AppController@maindetails']);
 
 });
